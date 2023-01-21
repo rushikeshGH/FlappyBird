@@ -28,7 +28,7 @@ public class Pipe {
     public Pipe(Orientation orientation, float x, float y) {
         this.orientation = orientation;
         this.position = new Vector2(x - (pipe.getWidth() / 2),
-                orientation == Orientation.TOP ? y : y + pipe.getHeight());
+                orientation == Orientation.TOP ? y + pipe.getHeight() : y);
     }
 
     public void update(float deltaTime) {
@@ -38,6 +38,14 @@ public class Pipe {
     public void draw(SpriteBatch batch) {
         batch.draw(pipe,
                 position.x,
-                position.y);
+                position.y,
+                pipe.getWidth(),
+                pipe.getHeight(),
+                0,
+                0,
+                pipe.getWidth(),
+                pipe.getHeight(),
+                false,
+                orientation == Orientation.TOP);
     }
 }

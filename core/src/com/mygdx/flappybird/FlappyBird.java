@@ -51,11 +51,12 @@ public class FlappyBird extends ApplicationAdapter {
 
         if (timer > 2) {
             float x = camera.viewportWidth + 64;
-            float y = (float) Math.max(-Pipe.getHeight() + 10,
-                    Math.min(lastY + (-20 + 40 * Math.random()),
-                            camera.viewportHeight - 90 - Pipe.getHeight()));
+            float min = -Pipe.getHeight() + 80;
+            float max = camera.viewportHeight - 100 - Pipe.getHeight();
+            float value = (lastY + (20 * (Math.random() > .5f ? 1 : -1)));
+            float y = Math.max(min, Math.min(value, max));
             lastY = y;
-            PipePair pipePair = new PipePair(x, -Pipe.getHeight() + 10);
+            PipePair pipePair = new PipePair(x, y);
             pipePairs.add(pipePair);
             timer = 0;
         }
